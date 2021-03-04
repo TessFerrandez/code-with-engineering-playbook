@@ -3973,13 +3973,13 @@ To use shell-format in vscode do the following:</p>
 </code></pre></div>
 <h2 id="code-review-checklist">Code Review Checklist</h2>
 <p>In addition to the <a href="../../process-guidance/reviewer-guidance/">Code Review Checklist</a> you should also look for these bash specific code review items</p>
-<ul>
-<li>[ ] Does this code use <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">Built-in Shell</a> Options like set -o, set -e, set -u for execution control of shell scripts ?</li>
-<li>[ ] Is the code modularized? Shell scripts can be modularized like python modules. Portions of bash scripts should be sourced in complex bash projects.</li>
-<li>[ ] Are all exceptions handled correctly? Exceptions should be handled correctly using exit codes or trapping signals.</li>
-<li>[ ] Does the code pass all linting checks as per shellcheck and unit tests as per shunit2 ?</li>
-<li>[ ] Does the code uses relative paths or absolute paths? Relative paths should be avoided as they are prone to environment attacks. If relative path is needed, check that the <code>PATH</code> variable is set.</li>
-<li>[ ] Does the code take credentials as user input? Are the credentials masked or encrypted in the script?</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code use <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">Built-in Shell</a> Options like set -o, set -e, set -u for execution control of shell scripts ?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is the code modularized? Shell scripts can be modularized like python modules. Portions of bash scripts should be sourced in complex bash projects.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Are all exceptions handled correctly? Exceptions should be handled correctly using exit codes or trapping signals.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does the code pass all linting checks as per shellcheck and unit tests as per shunit2 ?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does the code uses relative paths or absolute paths? Relative paths should be avoided as they are prone to environment attacks. If relative path is needed, check that the <code>PATH</code> variable is set.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does the code take credentials as user input? Are the credentials masked or encrypted in the script?</li>
 </ul>
                 
               

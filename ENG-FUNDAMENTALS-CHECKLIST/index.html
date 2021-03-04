@@ -3819,101 +3819,101 @@
                 <h1 id="engineering-fundamentals-checklist">Engineering Fundamentals Checklist</h1>
 <p>This checklist helps to ensure that our projects meet our Engineering Fundamentals.</p>
 <h2 id="source-control">Source Control</h2>
-<ul>
-<li>[ ] The main branch is locked.</li>
-<li>[ ] Merges are done through PRs.</li>
-<li>[ ] PRs reference related work items.</li>
-<li>[ ] Commit history is consistent and commit messages are informative (what, why).</li>
-<li>[ ] Consistent branch naming conventions.</li>
-<li>[ ] Clear documentation of repository structure.</li>
-<li>[ ] Secrets are not part of the commit history or made public. (see <a href="../continuous-integration/credential-scanning/readme/">Credential scanning</a>)</li>
-<li>[ ] Public repositories follow the <a href="../source-control/readme/#creating-a-new-repository">OSS guidelines</a>, see <code>Required files in default branch for public repositories</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> The main branch is locked.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Merges are done through PRs.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> PRs reference related work items.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Commit history is consistent and commit messages are informative (what, why).</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Consistent branch naming conventions.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Clear documentation of repository structure.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Secrets are not part of the commit history or made public. (see <a href="../continuous-integration/credential-scanning/readme/">Credential scanning</a>)</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Public repositories follow the <a href="../source-control/readme/#creating-a-new-repository">OSS guidelines</a>, see <code>Required files in default branch for public repositories</code>.</li>
 </ul>
 <p>More details on <a href="../source-control/readme/">Source Control</a></p>
 <h2 id="work-item-tracking">Work Item Tracking</h2>
-<ul>
-<li>[ ] All items are tracked in AzDevOps (or similar).</li>
-<li>[ ] The board is organized (swim lanes, feature tags, technology tags).</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> All items are tracked in AzDevOps (or similar).</li>
+<li class="task-list-item"><input type="checkbox" disabled/> The board is organized (swim lanes, feature tags, technology tags).</li>
 </ul>
 <h2 id="testing">Testing</h2>
-<ul>
-<li>[ ] Unit tests cover the majority of all components (&gt;90% if possible).</li>
-<li>[ ] Integration tests run to test the solution e2e.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Unit tests cover the majority of all components (&gt;90% if possible).</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Integration tests run to test the solution e2e.</li>
 </ul>
 <p>More details on <a href="../automated-testing/unit-testing/readme/">Unit Testing</a>
 More details on <a href="../automated-testing/integration-testing/readme/">Integration Testing</a></p>
 <h2 id="cicd">CI/CD</h2>
-<ul>
-<li>[ ] Project runs CI with automated build and test on each PR.</li>
-<li>[ ] Project uses CD to manage deployments to a replica environment before PRs are merged.</li>
-<li>[ ] Main branch is always shippable.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Project runs CI with automated build and test on each PR.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Project uses CD to manage deployments to a replica environment before PRs are merged.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Main branch is always shippable.</li>
 </ul>
 <h2 id="security-to-do">Security - TO DO</h2>
-<ul>
-<li>[ ] Access control.</li>
-<li>[ ] Separation of concerns.</li>
-<li>[ ] Robust treatment of secrets.</li>
-<li>[ ] Encryption for data in transit (and if necessary at rest) and password hashing.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Access control.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Separation of concerns.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Robust treatment of secrets.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Encryption for data in transit (and if necessary at rest) and password hashing.</li>
 </ul>
 <h2 id="observability">Observability</h2>
-<ul>
-<li>[ ] Significant business and functional events are tracked and related metrics collected.</li>
-<li>[ ] Application faults and errors are logged.</li>
-<li>[ ] Health of the system is monitored.</li>
-<li>[ ] The client and server side observability data can be differentiated.</li>
-<li>[ ] Logging configuration can be modified without code changes (eg: verbose mode).</li>
-<li>[ ] <a href="../observability/correlation-id/">Incoming tracing context</a> is propagated to allow for production issue debugging purposes.</li>
-<li>[ ] GDPR compliance is ensured regarding PII (Personally Identifiable Information).</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Significant business and functional events are tracked and related metrics collected.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Application faults and errors are logged.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Health of the system is monitored.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> The client and server side observability data can be differentiated.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Logging configuration can be modified without code changes (eg: verbose mode).</li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="../observability/correlation-id/">Incoming tracing context</a> is propagated to allow for production issue debugging purposes.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> GDPR compliance is ensured regarding PII (Personally Identifiable Information).</li>
 </ul>
 <h2 id="agilescrum">Agile/Scrum</h2>
-<ul>
-<li>[ ] Process Lead (fixed/rotating) to run standup daily.</li>
-<li>[ ] Agile process clearly defined within team.</li>
-<li>[ ] Dev Lead (+ PO/Others) have responsibility for backlog management and refinement.</li>
-<li>[ ] Working agreement between members of team and customer.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Process Lead (fixed/rotating) to run standup daily.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Agile process clearly defined within team.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Dev Lead (+ PO/Others) have responsibility for backlog management and refinement.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Working agreement between members of team and customer.</li>
 </ul>
 <h2 id="design-reviews">Design Reviews</h2>
-<ul>
-<li>[ ] Process for conducting design reviews is included in the <a href="../agile-development/team-agreements/working-agreements/readme/">Working Agreement</a>.</li>
-<li>[ ] Design reviews for each major component of the solution are carried out and documented, including alternatives.</li>
-<li>[ ] Stories and/or PRs link to the design document.</li>
-<li>[ ] Each user story includes a task for design review by default, which is assigned or removed during sprint planning.</li>
-<li>[ ] Project advisors are invited to design reviews or asked to give feedback to the design decisions captured in documentation.</li>
-<li>[ ] Discover all the reviews that the customer's processes require and plan for them.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Process for conducting design reviews is included in the <a href="../agile-development/team-agreements/working-agreements/readme/">Working Agreement</a>.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Design reviews for each major component of the solution are carried out and documented, including alternatives.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Stories and/or PRs link to the design document.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Each user story includes a task for design review by default, which is assigned or removed during sprint planning.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Project advisors are invited to design reviews or asked to give feedback to the design decisions captured in documentation.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Discover all the reviews that the customer's processes require and plan for them.</li>
 </ul>
 <p>More details on <a href="../design-reviews/readme/">Design Reviews</a></p>
 <h2 id="code-reviews">Code Reviews</h2>
-<ul>
-<li>[ ] Clear agreement in the team as to function of code reviews.</li>
-<li>[ ] Code review checklist or established process.</li>
-<li>[ ] A minimum number of reviewers (usually 2) for a PR merge is enforced by policy.</li>
-<li>[ ] Linters/Code Analyzers, unit tests and successful builds for PR merges are set up.</li>
-<li>[ ] Process to enforce a quick review turnaround.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Clear agreement in the team as to function of code reviews.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Code review checklist or established process.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> A minimum number of reviewers (usually 2) for a PR merge is enforced by policy.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Linters/Code Analyzers, unit tests and successful builds for PR merges are set up.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Process to enforce a quick review turnaround.</li>
 </ul>
 <p>More details on <a href="../code-reviews/">Code Reviews</a></p>
 <h2 id="retrospectives">Retrospectives</h2>
-<ul>
-<li>[ ] Set time for retrospectives each week/at the end of each sprint.</li>
-<li>[ ] 1-3 proposed experiments to be tried each week/sprint to improve the process.</li>
-<li>[ ] Experiments have owners and are added to project backlog.</li>
-<li>[ ] Longer retrospective for Milestones and project completion.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Set time for retrospectives each week/at the end of each sprint.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 1-3 proposed experiments to be tried each week/sprint to improve the process.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Experiments have owners and are added to project backlog.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Longer retrospective for Milestones and project completion.</li>
 </ul>
 <p>More details on <a href="../agile-development/retrospectives/readme/">Retrospectives</a></p>
 <h2 id="engineering-feedback">Engineering Feedback</h2>
-<ul>
-<li>[ ] Submit business and technical blockers that prevent project success</li>
-<li>[ ] Add suggestions for improvements to leveraged services and components</li>
-<li>[ ] Ensure feedback is detailed and repeatable</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Submit business and technical blockers that prevent project success</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Add suggestions for improvements to leveraged services and components</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Ensure feedback is detailed and repeatable</li>
 </ul>
 <p>More details on <a href="../engineering-feedback/readme/">Engineering Feedback</a></p>
 <h2 id="developer-experience-devex">Developer Experience (DevEx)</h2>
-<ul>
-<li>[ ] Build/Compile source to verify it is free of syntax errors and compiles.</li>
-<li>[ ] Execute all automated tests (unit, e2e, etc).</li>
-<li>[ ] Start/Launch end-to-end to simulate execution in a deployed environment.</li>
-<li>[ ] Attach debugger to started solution or running automated tests, set breakpoints, step through code, and inspect variables.</li>
-<li>[ ] When pressing F5 in the IDE, dependencies are automatically installed.</li>
-<li>[ ] You can use local dev configuration values (i.e. .env, appsettings.development.json).</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Build/Compile source to verify it is free of syntax errors and compiles.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Execute all automated tests (unit, e2e, etc).</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Start/Launch end-to-end to simulate execution in a deployed environment.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Attach debugger to started solution or running automated tests, set breakpoints, step through code, and inspect variables.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> When pressing F5 in the IDE, dependencies are automatically installed.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> You can use local dev configuration values (i.e. .env, appsettings.development.json).</li>
 </ul>
 <p>More details on <a href="../developer-experience/readme/">Developer Experience</a></p>
                 

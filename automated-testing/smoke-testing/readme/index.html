@@ -3757,11 +3757,11 @@
 <p>Smoke tests cover only the most critical application path, and should not be used to actually test the application's behaviour, keeping execution time and complexity to minimum. The tests can be formed of a subset of the application's integration or e2e tests, and they cover as much of the functionality with as little depth as required.</p>
 <p>The golden rule of a good smoke test is that it saves time on validating that the application is acceptable to a stage where better, more thorough testing will begin.</p>
 <h3 id="applicable-to">Applicable to</h3>
-<ul>
-<li>[x] <strong>Local dev desktop</strong> - <em>Example:</em> Applying manual smoke testing to verify that the application is OK.</li>
-<li>[x] <strong>Build pipelines</strong> - <em>Example:</em> Running a small set of the integration test suite before running the full coverage of tests, which may take a long time.</li>
-<li>[x] <strong>Non-production and Production deployments</strong> - <em>Example:</em> Running a curl command to the product's API and asserting the response is 200 before running load test which consume resources.</li>
-<li>[x] <strong>PR Validation</strong> - <em>Example:</em> - Deploying the application chart to a test namespace and validating the release is successful and no immediate regressions are merged.</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Local dev desktop</strong> - <em>Example:</em> Applying manual smoke testing to verify that the application is OK.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Build pipelines</strong> - <em>Example:</em> Running a small set of the integration test suite before running the full coverage of tests, which may take a long time.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Non-production and Production deployments</strong> - <em>Example:</em> Running a curl command to the product's API and asserting the response is 200 before running load test which consume resources.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>PR Validation</strong> - <em>Example:</em> - Deploying the application chart to a test namespace and validating the release is successful and no immediate regressions are merged.</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
 <p>Smoke testing is a low-effort, high-impact step to ship more reliable software. It should be considered amongst the first stages to implement when planning continuously integrated and delivered systems.</p>

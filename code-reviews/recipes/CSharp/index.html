@@ -3847,20 +3847,20 @@
 <p><img alt="rosyln-support" src="../vscode-roslyn.png" /></p>
 <h2 id="code-review-checklist">Code Review Checklist</h2>
 <p>In addition to the <a href="../../process-guidance/reviewer-guidance/">Code Review Checklist</a> you should also look for these C# specific code review items</p>
-<ul>
-<li>[ ] Does this code make correct use of <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/#BKMK_AsyncandAwait">asynchronous programming constructs</a>, including proper use of <code>await</code> and <code>Task.WhenAll</code> including CancellationTokens?</li>
-<li>[ ] Is the code subject to concurrency issues? Are shared objects properly protected?</li>
-<li>[ ] Is dependency injection (DI) used? Is it setup correctly?</li>
-<li>[ ] Are <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index?view=aspnetcore-2.1&amp;tabs=aspnetcore2x">middlewares</a> included in this project configured correctly?</li>
-<li>[ ] Are resources released deterministically using the IDispose pattern? Are all disposable objects properly disposed (<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement">using pattern</a>)?</li>
-<li>[ ] Is the code creating a lot of short-lived objects. Could we optimize GC pressure?</li>
-<li>[ ] Is the code written in a way that causes boxing operations to happen?</li>
-<li>[ ] Does the code <a href="https://docs.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions">handle exceptions correctly</a>?</li>
-<li>[ ] Is package management being used (NuGet) instead of committing DLLs?</li>
-<li>[ ] Does this code use LINQ appropriately? Pulling LINQ into a project to replace a single short loop or in ways that do not perform well are usually not appropriate.</li>
-<li>[ ] Does this code properly validate arguments sanity (i.e. <a href="https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1062">CA1062</a>)? Consider leveraging extensions such as <a href="https://github.com/danielwertheim/Ensure.That">Ensure.That</a></li>
-<li>[ ] Does this code include telemetry (<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">metrics, tracing</a> and <a href="https://serilog.net/">logging</a>) instrumentation?</li>
-<li>[ ] Does this code leverage the <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-3.1">options design pattern</a> by using classes to provide strongly typed access to groups of related settings?</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code make correct use of <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/#BKMK_AsyncandAwait">asynchronous programming constructs</a>, including proper use of <code>await</code> and <code>Task.WhenAll</code> including CancellationTokens?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is the code subject to concurrency issues? Are shared objects properly protected?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is dependency injection (DI) used? Is it setup correctly?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Are <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/index?view=aspnetcore-2.1&amp;tabs=aspnetcore2x">middlewares</a> included in this project configured correctly?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Are resources released deterministically using the IDispose pattern? Are all disposable objects properly disposed (<a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement">using pattern</a>)?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is the code creating a lot of short-lived objects. Could we optimize GC pressure?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is the code written in a way that causes boxing operations to happen?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does the code <a href="https://docs.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions">handle exceptions correctly</a>?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Is package management being used (NuGet) instead of committing DLLs?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code use LINQ appropriately? Pulling LINQ into a project to replace a single short loop or in ways that do not perform well are usually not appropriate.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code properly validate arguments sanity (i.e. <a href="https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1062">CA1062</a>)? Consider leveraging extensions such as <a href="https://github.com/danielwertheim/Ensure.That">Ensure.That</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code include telemetry (<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">metrics, tracing</a> and <a href="https://serilog.net/">logging</a>) instrumentation?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does this code leverage the <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-3.1">options design pattern</a> by using classes to provide strongly typed access to groups of related settings?</li>
 </ul>
                 
               
