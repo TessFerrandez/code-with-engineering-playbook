@@ -1,0 +1,4389 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="CSE Code With Engineering Playbook">
+      
+      
+      
+        <meta name="author" content="Microsoft CSE">
+      
+      
+        <link rel="canonical" href="https://microsoft.github.io/code-with-engineering-playbook/source-control/git-guidance/readme/">
+      
+      <link rel="shortcut icon" href="../../../resources/ms_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Git Guidance - Code With Engineering Playbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-guidance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://microsoft.github.io/code-with-engineering-playbook" title="Code With Engineering Playbook" class="md-header-nav__button md-logo" aria-label="Code With Engineering Playbook">
+      
+  <img src="../../../resources/ms_icon.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Code With Engineering Playbook
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Git Guidance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/microsoft/code-with-engineering-playbook/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://microsoft.github.io/code-with-engineering-playbook" title="Code With Engineering Playbook" class="md-nav__button md-logo" aria-label="Code With Engineering Playbook">
+      
+  <img src="../../../resources/ms_icon.png" alt="logo">
+
+    </a>
+    Code With Engineering Playbook
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/microsoft/code-with-engineering-playbook/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CSE/" class="md-nav__link">
+        Who are we
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ENG-FUNDAMENTALS-CHECKLIST/" class="md-nav__link">
+        Engineering Fundamentals Checklist
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SPRINT-STRUCTURE/" class="md-nav__link">
+        Structure of a Sprint
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Agile development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Agile development" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Agile development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/" class="md-nav__link">
+        Agile Development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2" >
+      
+      <label class="md-nav__link" for="nav-5-2">
+        Backlog management
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Backlog management" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-2">
+          <span class="md-nav__icon md-icon"></span>
+          Backlog management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/backlog-management/external-feedback/" class="md-nav__link">
+        External feedback
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/backlog-management/minimal-slices/" class="md-nav__link">
+        Minimalism Slices
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/backlog-management/readme/" class="md-nav__link">
+        Backlog Management
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2-4" type="checkbox" id="nav-5-2-4" >
+      
+      <label class="md-nav__link" for="nav-5-2-4">
+        Refinement
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Refinement" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-2-4">
+          <span class="md-nav__icon md-icon"></span>
+          Refinement
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/backlog-management/refinement/readme/" class="md-nav__link">
+        Backlog Refinement
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3" >
+      
+      <label class="md-nav__link" for="nav-5-3">
+        Collaboration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Collaboration" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-3">
+          <span class="md-nav__icon md-icon"></span>
+          Collaboration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/collaboration/readme/" class="md-nav__link">
+        Collaboration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4" >
+      
+      <label class="md-nav__link" for="nav-5-4">
+        Retrospectives
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Retrospectives" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-4">
+          <span class="md-nav__icon md-icon"></span>
+          Retrospectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/retrospectives/readme/" class="md-nav__link">
+        Retrospectives
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5" >
+      
+      <label class="md-nav__link" for="nav-5-5">
+        Scrum of scrums
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Scrum of scrums" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-5">
+          <span class="md-nav__icon md-icon"></span>
+          Scrum of scrums
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/scrum-of-scrums/readme/" class="md-nav__link">
+        Scrum of Scrums
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6" >
+      
+      <label class="md-nav__link" for="nav-5-6">
+        Sprint planning
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Sprint planning" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-6">
+          <span class="md-nav__icon md-icon"></span>
+          Sprint planning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/sprint-planning/readme/" class="md-nav__link">
+        Planning
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-6-2" type="checkbox" id="nav-5-6-2" >
+      
+      <label class="md-nav__link" for="nav-5-6-2">
+        Estimation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Estimation" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-6-2">
+          <span class="md-nav__icon md-icon"></span>
+          Estimation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/sprint-planning/estimation/readme/" class="md-nav__link">
+        Goals for Estimation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-7" type="checkbox" id="nav-5-7" >
+      
+      <label class="md-nav__link" for="nav-5-7">
+        Stand ups
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stand ups" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-7">
+          <span class="md-nav__icon md-icon"></span>
+          Stand ups
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/stand-ups/readme/" class="md-nav__link">
+        Stand-ups
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-7-2" type="checkbox" id="nav-5-7-2" >
+      
+      <label class="md-nav__link" for="nav-5-7-2">
+        Social question
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Social question" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-7-2">
+          <span class="md-nav__icon md-icon"></span>
+          Social question
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/stand-ups/social-question/readme/" class="md-nav__link">
+        Social question of the day
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8" type="checkbox" id="nav-5-8" >
+      
+      <label class="md-nav__link" for="nav-5-8">
+        Team agreements
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Team agreements" data-md-level="2">
+        <label class="md-nav__title" for="nav-5-8">
+          <span class="md-nav__icon md-icon"></span>
+          Team agreements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/team-agreements/readme/" class="md-nav__link">
+        Team Agreements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8-2" type="checkbox" id="nav-5-8-2" >
+      
+      <label class="md-nav__link" for="nav-5-8-2">
+        Definition of done
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Definition of done" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-8-2">
+          <span class="md-nav__icon md-icon"></span>
+          Definition of done
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/team-agreements/definition-of-done/readme/" class="md-nav__link">
+        Definition of Done
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8-3" type="checkbox" id="nav-5-8-3" >
+      
+      <label class="md-nav__link" for="nav-5-8-3">
+        Definition of ready
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Definition of ready" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-8-3">
+          <span class="md-nav__icon md-icon"></span>
+          Definition of ready
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/team-agreements/definition-of-ready/readme/" class="md-nav__link">
+        Definition of Ready
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8-4" type="checkbox" id="nav-5-8-4" >
+      
+      <label class="md-nav__link" for="nav-5-8-4">
+        Team manifesto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Team manifesto" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-8-4">
+          <span class="md-nav__icon md-icon"></span>
+          Team manifesto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/team-agreements/team-manifesto/readme/" class="md-nav__link">
+        Team Manifesto
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8-5" type="checkbox" id="nav-5-8-5" >
+      
+      <label class="md-nav__link" for="nav-5-8-5">
+        Working agreements
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Working agreements" data-md-level="3">
+        <label class="md-nav__title" for="nav-5-8-5">
+          <span class="md-nav__icon md-icon"></span>
+          Working agreements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agile-development/team-agreements/working-agreements/readme/" class="md-nav__link">
+        Sections of a working agreement
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Automated testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Automated testing" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Automated testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/readme/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2" >
+      
+      <label class="md-nav__link" for="nav-6-2">
+        E2e testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="E2e testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-2">
+          <span class="md-nav__icon md-icon"></span>
+          E2e testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/e2e-testing/readme/" class="md-nav__link">
+        E2E Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/e2e-testing/test_type_template2/" class="md-nav__link">
+        ~Test type~
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/e2e-testing/testing-comparison/" class="md-nav__link">
+        Unit vs Integration vs System vs E2E Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/e2e-testing/testing-methods/" class="md-nav__link">
+        E2E Testing Methods
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2-5" type="checkbox" id="nav-6-2-5" >
+      
+      <label class="md-nav__link" for="nav-6-2-5">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="3">
+        <label class="md-nav__title" for="nav-6-2-5">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2-5-1" type="checkbox" id="nav-6-2-5-1" >
+      
+      <label class="md-nav__link" for="nav-6-2-5-1">
+        Gauge framework
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gauge framework" data-md-level="4">
+        <label class="md-nav__title" for="nav-6-2-5-1">
+          <span class="md-nav__icon md-icon"></span>
+          Gauge framework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/e2e-testing/recipes/gauge-framework/gauge-framework/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3" >
+      
+      <label class="md-nav__link" for="nav-6-3">
+        Fault injection testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Fault injection testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-3">
+          <span class="md-nav__icon md-icon"></span>
+          Fault injection testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/fault-injection-testing/readme/" class="md-nav__link">
+        Fault Injection Testing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4" >
+      
+      <label class="md-nav__link" for="nav-6-4">
+        Integration testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Integration testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-4">
+          <span class="md-nav__icon md-icon"></span>
+          Integration testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/integration-testing/readme/" class="md-nav__link">
+        Integration Testing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5" >
+      
+      <label class="md-nav__link" for="nav-6-5">
+        Performance testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Performance testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-5">
+          <span class="md-nav__icon md-icon"></span>
+          Performance testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/performance-testing/load-testing/" class="md-nav__link">
+        Load Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/performance-testing/readme/" class="md-nav__link">
+        Performance Testing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6" >
+      
+      <label class="md-nav__link" for="nav-6-6">
+        Smoke testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Smoke testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-6">
+          <span class="md-nav__icon md-icon"></span>
+          Smoke testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/smoke-testing/readme/" class="md-nav__link">
+        Smoke Tests
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7" >
+      
+      <label class="md-nav__link" for="nav-6-7">
+        Synthetic monitoring tests
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Synthetic monitoring tests" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-7">
+          <span class="md-nav__icon md-icon"></span>
+          Synthetic monitoring tests
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/synthetic-monitoring-tests/readme/" class="md-nav__link">
+        Synthetic Monitoring Tests
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8" >
+      
+      <label class="md-nav__link" for="nav-6-8">
+        Templates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Templates" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-8">
+          <span class="md-nav__icon md-icon"></span>
+          Templates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/templates/case-study-template/" class="md-nav__link">
+        ~Customer Project~ Case Study
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/templates/test_type_template/" class="md-nav__link">
+        Insert Test Technique Name Here
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9" >
+      
+      <label class="md-nav__link" for="nav-6-9">
+        Ui testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ui testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ui testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/ui-testing/readme/" class="md-nav__link">
+        User Interface Testing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-10" type="checkbox" id="nav-6-10" >
+      
+      <label class="md-nav__link" for="nav-6-10">
+        Unit testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Unit testing" data-md-level="2">
+        <label class="md-nav__title" for="nav-6-10">
+          <span class="md-nav__icon md-icon"></span>
+          Unit testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/unit-testing/authoring_example/" class="md-nav__link">
+        Example: Authoring a unit test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/unit-testing/mocking/" class="md-nav__link">
+        Mocking in Unit Tests
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/unit-testing/readme/" class="md-nav__link">
+        Unit Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/unit-testing/tdd_example/" class="md-nav__link">
+        Test-Driven Development Example
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../automated-testing/unit-testing/why-unit-tests/" class="md-nav__link">
+        Why Unit Tests
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+      
+      <label class="md-nav__link" for="nav-7">
+        Code reviews
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code reviews" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Code reviews
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/" class="md-nav__link">
+        Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/pull-request-template/" class="md-nav__link">
+        Pull Request Template
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/pull-requests/" class="md-nav__link">
+        Pull Requests
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/tools/" class="md-nav__link">
+        Code review tools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-6" type="checkbox" id="nav-7-6" >
+      
+      <label class="md-nav__link" for="nav-7-6">
+        Evidence and measures
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Evidence and measures" data-md-level="2">
+        <label class="md-nav__title" for="nav-7-6">
+          <span class="md-nav__icon md-icon"></span>
+          Evidence and measures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/evidence-and-measures/" class="md-nav__link">
+        Evidence and Measures
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/evidence-and-measures/branch-policy/" class="md-nav__link">
+        Configuring Branch Policies
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-7" type="checkbox" id="nav-7-7" >
+      
+      <label class="md-nav__link" for="nav-7-7">
+        Process guidance
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Process guidance" data-md-level="2">
+        <label class="md-nav__title" for="nav-7-7">
+          <span class="md-nav__icon md-icon"></span>
+          Process guidance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/process-guidance/" class="md-nav__link">
+        Process Guidance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/process-guidance/author-guidance/" class="md-nav__link">
+        Authors guidance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/process-guidance/customize-ado/" class="md-nav__link">
+        Customize ADO
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/process-guidance/reviewer-guidance/" class="md-nav__link">
+        Reviewer Guidance
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-8" type="checkbox" id="nav-7-8" >
+      
+      <label class="md-nav__link" for="nav-7-8">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="2">
+        <label class="md-nav__title" for="nav-7-8">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/" class="md-nav__link">
+        Language Specific Guidance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Bash/" class="md-nav__link">
+        Bash Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/CSharp/" class="md-nav__link">
+        C# Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Go/" class="md-nav__link">
+        Go Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Java/" class="md-nav__link">
+        Java Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Markdown/" class="md-nav__link">
+        Markdown Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Python/" class="md-nav__link">
+        Python Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/Terraform/" class="md-nav__link">
+        Terraform Code Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../code-reviews/recipes/javascript-and-typescript/" class="md-nav__link">
+        JavaScript/TypeScript Code Reviews
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        Continuous delivery
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Continuous delivery" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Continuous delivery
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-delivery/readme/" class="md-nav__link">
+        Continuous Delivery
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2" >
+      
+      <label class="md-nav__link" for="nav-8-2">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-2">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-2-1" type="checkbox" id="nav-8-2-1" >
+      
+      <label class="md-nav__link" for="nav-8-2-1">
+        Github workflows
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Github workflows" data-md-level="3">
+        <label class="md-nav__title" for="nav-8-2-1">
+          <span class="md-nav__icon md-icon"></span>
+          Github workflows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-delivery/recipes/github-workflows/workflow-per-environment/" class="md-nav__link">
+        GitHub Workflows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3" >
+      
+      <label class="md-nav__link" for="nav-8-3">
+        Secrets management
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Secrets management" data-md-level="2">
+        <label class="md-nav__title" for="nav-8-3">
+          <span class="md-nav__icon md-icon"></span>
+          Secrets management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-delivery/secrets-management/readme/" class="md-nav__link">
+        Secrets Management
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-3-2" type="checkbox" id="nav-8-3-2" >
+      
+      <label class="md-nav__link" for="nav-8-3-2">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="3">
+        <label class="md-nav__title" for="nav-8-3-2">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8-3-2-1" type="checkbox" id="nav-8-3-2-1" >
+      
+      <label class="md-nav__link" for="nav-8-3-2-1">
+        Azure devops
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Azure devops" data-md-level="4">
+        <label class="md-nav__title" for="nav-8-3-2-1">
+          <span class="md-nav__icon md-icon"></span>
+          Azure devops
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-delivery/secrets-management/recipes/azure-devops/secrets-per-branch/" class="md-nav__link">
+        Azure DevOps: managing settings on a per-branch basis
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Continuous integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Continuous integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Continuous integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-integration/CICD/" class="md-nav__link">
+        Continuous Integration and Delivery
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-integration/readme/" class="md-nav__link">
+        Continuous Integration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-3" type="checkbox" id="nav-9-3" >
+      
+      <label class="md-nav__link" for="nav-9-3">
+        Credential scanning
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Credential scanning" data-md-level="2">
+        <label class="md-nav__title" for="nav-9-3">
+          <span class="md-nav__icon md-icon"></span>
+          Credential scanning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-integration/credential-scanning/readme/" class="md-nav__link">
+        Credential scanning
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-3-2" type="checkbox" id="nav-9-3-2" >
+      
+      <label class="md-nav__link" for="nav-9-3-2">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="3">
+        <label class="md-nav__title" for="nav-9-3-2">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-integration/credential-scanning/recipes/detect-secrets-ado/" class="md-nav__link">
+        Detecting secrets in your Azure DevOps Pipeline with YELP detect-secrets
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../continuous-integration/credential-scanning/recipes/detect-secrets/" class="md-nav__link">
+        Credential scanning tool suggestion: detect-secrets
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" >
+      
+      <label class="md-nav__link" for="nav-10">
+        Data fundamentals
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data fundamentals" data-md-level="1">
+        <label class="md-nav__title" for="nav-10">
+          <span class="md-nav__icon md-icon"></span>
+          Data fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data-fundamentals/" class="md-nav__link">
+        Data and DataOps fundamentals
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" >
+      
+      <label class="md-nav__link" for="nav-11">
+        Design reviews
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Design reviews" data-md-level="1">
+        <label class="md-nav__title" for="nav-11">
+          <span class="md-nav__icon md-icon"></span>
+          Design reviews
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/readme/" class="md-nav__link">
+        Design Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-2" type="checkbox" id="nav-11-2" >
+      
+      <label class="md-nav__link" for="nav-11-2">
+        Decision log
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Decision log" data-md-level="2">
+        <label class="md-nav__title" for="nav-11-2">
+          <span class="md-nav__icon md-icon"></span>
+          Decision log
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/decision-log/readme/" class="md-nav__link">
+        Design decision log
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-2-2" type="checkbox" id="nav-11-2-2" >
+      
+      <label class="md-nav__link" for="nav-11-2-2">
+        Doc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Doc" data-md-level="3">
+        <label class="md-nav__title" for="nav-11-2-2">
+          <span class="md-nav__icon md-icon"></span>
+          Doc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/decision-log/doc/decision-log/" class="md-nav__link">
+        Decision Log
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-2-2-2" type="checkbox" id="nav-11-2-2-2" >
+      
+      <label class="md-nav__link" for="nav-11-2-2-2">
+        Adr
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Adr" data-md-level="4">
+        <label class="md-nav__title" for="nav-11-2-2-2">
+          <span class="md-nav__icon md-icon"></span>
+          Adr
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/decision-log/doc/adr/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/decision-log/doc/adr/0002-app-level-logging/" class="md-nav__link">
+        2. App-level Logging with Serilog and Application Insights
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-3" type="checkbox" id="nav-11-3" >
+      
+      <label class="md-nav__link" for="nav-11-3">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="2">
+        <label class="md-nav__title" for="nav-11-3">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/async-design-reviews/" class="md-nav__link">
+        Async Design Reviews
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/engagement-process/" class="md-nav__link">
+        Incorporating Design Reviews into an Engagement
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/feature-story-design-review-template/" class="md-nav__link">
+        Your Feature or Story Design Title Here (prefix with DRAFT/WIP to indicate level of completeness)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/high-level-design-recipe/" class="md-nav__link">
+        High Level / Game Plan Design Recipe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/milestone-epic-design-review-recipe/" class="md-nav__link">
+        Milestone / Epic Design Review Recipe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/milestone-epic-design-review-template/" class="md-nav__link">
+        Your Milestone/Epic Design Title Here (prefix with DRAFT/WIP to indicate level of completeness)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/task-design-review-template/" class="md-nav__link">
+        Your Task Design Title Here (prefix with DRAFT/WIP to indicate level of completeness)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/recipes/technical-spike/" class="md-nav__link">
+        Technical Spike
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-4" type="checkbox" id="nav-11-4" >
+      
+      <label class="md-nav__link" for="nav-11-4">
+        Trade studies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Trade studies" data-md-level="2">
+        <label class="md-nav__title" for="nav-11-4">
+          <span class="md-nav__icon md-icon"></span>
+          Trade studies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/trade-studies/readme/" class="md-nav__link">
+        Trade Studies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design-reviews/trade-studies/template/" class="md-nav__link">
+        Trade Study Template
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12" >
+      
+      <label class="md-nav__link" for="nav-12">
+        Developer experience
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developer experience" data-md-level="1">
+        <label class="md-nav__title" for="nav-12">
+          <span class="md-nav__icon md-icon"></span>
+          Developer experience
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer-experience/readme/" class="md-nav__link">
+        Developer Experience (DevEx)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12-2" type="checkbox" id="nav-12-2" >
+      
+      <label class="md-nav__link" for="nav-12-2">
+        Recipes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Recipes" data-md-level="2">
+        <label class="md-nav__title" for="nav-12-2">
+          <span class="md-nav__icon md-icon"></span>
+          Recipes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer-experience/recipes/cross-platform-tasks/" class="md-nav__link">
+        Cross Platform Tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer-experience/recipes/onboarding-guide-template/" class="md-nav__link">
+        Onboarding Guide Template
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13" >
+      
+      <label class="md-nav__link" for="nav-13">
+        Engineering feedback
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Engineering feedback" data-md-level="1">
+        <label class="md-nav__title" for="nav-13">
+          <span class="md-nav__icon md-icon"></span>
+          Engineering feedback
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engineering-feedback/feedback-examples/" class="md-nav__link">
+        Engineering Feedback Examples
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engineering-feedback/feedback-faq/" class="md-nav__link">
+        Engineering Feedback Frequently Asked Questions (F.A.Q.)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engineering-feedback/feedback-guidance/" class="md-nav__link">
+        Engineering Feedback Guidance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engineering-feedback/readme/" class="md-nav__link">
+        Microsoft Engineering Feedback
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14" >
+      
+      <label class="md-nav__link" for="nav-14">
+        Ml fundamentals
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ml fundamentals" data-md-level="1">
+        <label class="md-nav__title" for="nav-14">
+          <span class="md-nav__icon md-icon"></span>
+          Ml fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/" class="md-nav__link">
+        Machine Learning fundamentals at CSE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-experimentation/" class="md-nav__link">
+        Model Experimentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-feasibility-study/" class="md-nav__link">
+        ML Feasibility Studies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-fundamentals-checklist/" class="md-nav__link">
+        ML Fundamentals checklist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-model-checklist/" class="md-nav__link">
+        ML model production checklist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-project-management/" class="md-nav__link">
+        Agile development considerations for ML projects
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-proposed-process/" class="md-nav__link">
+        Proposed ML process
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml-fundamentals/ml-testing/" class="md-nav__link">
+        Testing Data Science and MLOps code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15" >
+      
+      <label class="md-nav__link" for="nav-15">
+        Observability
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Observability" data-md-level="1">
+        <label class="md-nav__title" for="nav-15">
+          <span class="md-nav__icon md-icon"></span>
+          Observability
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/alerting/" class="md-nav__link">
+        Guidance For Alerting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/correlation-id/" class="md-nav__link">
+        Correlation IDs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/log-vs-metric/" class="md-nav__link">
+        Logs vs Metrics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/ml-observability/" class="md-nav__link">
+        Observability in Machine Learning
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/pitfalls/" class="md-nav__link">
+        Things to watch for when building Observable Systems
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/readme/" class="md-nav__link">
+        Observability
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15-7" type="checkbox" id="nav-15-7" >
+      
+      <label class="md-nav__link" for="nav-15-7">
+        Pillars
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pillars" data-md-level="2">
+        <label class="md-nav__title" for="nav-15-7">
+          <span class="md-nav__icon md-icon"></span>
+          Pillars
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/pillars/dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/pillars/logging/" class="md-nav__link">
+        Logging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/pillars/metrics/" class="md-nav__link">
+        Metrics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/pillars/tracing/" class="md-nav__link">
+        Tracing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15-8" type="checkbox" id="nav-15-8" >
+      
+      <label class="md-nav__link" for="nav-15-8">
+        Tools
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tools" data-md-level="2">
+        <label class="md-nav__title" for="nav-15-8">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/tools/OpenTelemetry/" class="md-nav__link">
+        Open Telemetry
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/tools/loki/" class="md-nav__link">
+        Loki
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../observability/tools/readme/" class="md-nav__link">
+        Tools
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16" >
+      
+      <label class="md-nav__link" for="nav-16">
+        Resources
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="nav-16">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-16-1" type="checkbox" id="nav-16-1" >
+      
+      <label class="md-nav__link" for="nav-16-1">
+        Templates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Templates" data-md-level="2">
+        <label class="md-nav__title" for="nav-16-1">
+          <span class="md-nav__icon md-icon"></span>
+          Templates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/templates/" class="md-nav__link">
+        project-xyz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/templates/CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17" >
+      
+      <label class="md-nav__link" for="nav-17">
+        Security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Security" data-md-level="1">
+        <label class="md-nav__title" for="nav-17">
+          <span class="md-nav__icon md-icon"></span>
+          Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/rules-of-engagement/" class="md-nav__link">
+        Rules of Engagement
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18" checked>
+      
+      <label class="md-nav__link" for="nav-18">
+        Source control
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Source control" data-md-level="1">
+        <label class="md-nav__title" for="nav-18">
+          <span class="md-nav__icon md-icon"></span>
+          Source control
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../readme/" class="md-nav__link">
+        Source Control
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-2" type="checkbox" id="nav-18-2" >
+      
+      <label class="md-nav__link" for="nav-18-2">
+        Contributing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Contributing" data-md-level="2">
+        <label class="md-nav__title" for="nav-18-2">
+          <span class="md-nav__icon md-icon"></span>
+          Contributing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/merge-strategies/" class="md-nav__link">
+        Merge strategies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/naming-branches/" class="md-nav__link">
+        Naming branches
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-3" type="checkbox" id="nav-18-3" checked>
+      
+      <label class="md-nav__link" for="nav-18-3">
+        Git guidance
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Git guidance" data-md-level="2">
+        <label class="md-nav__title" for="nav-18-3">
+          <span class="md-nav__icon md-icon"></span>
+          Git guidance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Git Guidance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Git Guidance
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-workflow" class="md-nav__link">
+    Basic workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloning" class="md-nav__link">
+    Cloning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    Branching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#committing" class="md-nav__link">
+    Committing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging" class="md-nav__link">
+    Merging
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge-conflicts" class="md-nav__link">
+    Merge Conflicts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-remotes" class="md-nav__link">
+    Managing remotes
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing remotes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-forks" class="md-nav__link">
+    Working with forks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-the-remote-if-a-repository-changes-names" class="md-nav__link">
+    Updating the remote if a repository changes names
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolling-back-changes" class="md-nav__link">
+    Rolling back changes
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling back changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverting-and-deleting-commits" class="md-nav__link">
+    Reverting and deleting commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovering-lost-commits" class="md-nav__link">
+    Recovering lost commits
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-submodules" class="md-nav__link">
+    Using submodules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stashing-changes" class="md-nav__link">
+    Stashing changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-images-video-and-other-binary-content" class="md-nav__link">
+    Working with images, video and other binary content
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with images, video and other binary content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-git-lfs" class="md-nav__link">
+    Benefits of Git LFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-git-lfs" class="md-nav__link">
+    Limitations of Git LFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    Common commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-4" type="checkbox" id="nav-18-4" >
+      
+      <label class="md-nav__link" for="nav-18-4">
+        Pull request templates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pull request templates" data-md-level="2">
+        <label class="md-nav__title" for="nav-18-4">
+          <span class="md-nav__icon md-icon"></span>
+          Pull request templates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/" class="md-nav__link">
+        Pull Request Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-4-2" type="checkbox" id="nav-18-4-2" >
+      
+      <label class="md-nav__link" for="nav-18-4-2">
+        Azure devops
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Azure devops" data-md-level="3">
+        <label class="md-nav__title" for="nav-18-4-2">
+          <span class="md-nav__icon md-icon"></span>
+          Azure devops
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/azure-devops/azure-devops-bug-pr-template/" class="md-nav__link">
+        [Work Item](./link-to-the-work-item)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/azure-devops/azure-devops-feature-pr-template/" class="md-nav__link">
+        [Work Item](./link-to-the-work-item)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/azure-devops/azure-devops-template/" class="md-nav__link">
+        [Work Item](./link-to-the-work-item)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-4-3" type="checkbox" id="nav-18-4-3" >
+      
+      <label class="md-nav__link" for="nav-18-4-3">
+        Github
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Github" data-md-level="3">
+        <label class="md-nav__title" for="nav-18-4-3">
+          <span class="md-nav__icon md-icon"></span>
+          Github
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/github/github-bug-pr-template/" class="md-nav__link">
+        [Issue ID](./INSERT_URL_TO_ISSUE)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/github/github-feature-pr-template/" class="md-nav__link">
+        [Issue ID](./INSERT_URL_TO_ISSUE)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pull-request-templates/github/github-template/" class="md-nav__link">
+        [Issue ID](./INSERT_URL_TO_ISSUE)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-5" type="checkbox" id="nav-18-5" >
+      
+      <label class="md-nav__link" for="nav-18-5">
+        Secrets management
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Secrets management" data-md-level="2">
+        <label class="md-nav__title" for="nav-18-5">
+          <span class="md-nav__icon md-icon"></span>
+          Secrets management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../secrets-management/readme/" class="md-nav__link">
+        Working with secrets in source control
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18-6" type="checkbox" id="nav-18-6" >
+      
+      <label class="md-nav__link" for="nav-18-6">
+        Versioning
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Versioning" data-md-level="2">
+        <label class="md-nav__title" for="nav-18-6">
+          <span class="md-nav__icon md-icon"></span>
+          Versioning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/readme/" class="md-nav__link">
+        Component Versioning
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-workflow" class="md-nav__link">
+    Basic workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloning" class="md-nav__link">
+    Cloning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    Branching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#committing" class="md-nav__link">
+    Committing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging" class="md-nav__link">
+    Merging
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge-conflicts" class="md-nav__link">
+    Merge Conflicts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-remotes" class="md-nav__link">
+    Managing remotes
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing remotes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-forks" class="md-nav__link">
+    Working with forks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-the-remote-if-a-repository-changes-names" class="md-nav__link">
+    Updating the remote if a repository changes names
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolling-back-changes" class="md-nav__link">
+    Rolling back changes
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling back changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverting-and-deleting-commits" class="md-nav__link">
+    Reverting and deleting commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovering-lost-commits" class="md-nav__link">
+    Recovering lost commits
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-submodules" class="md-nav__link">
+    Using submodules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stashing-changes" class="md-nav__link">
+    Stashing changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-images-video-and-other-binary-content" class="md-nav__link">
+    Working with images, video and other binary content
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with images, video and other binary content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-git-lfs" class="md-nav__link">
+    Benefits of Git LFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-git-lfs" class="md-nav__link">
+    Limitations of Git LFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    Common commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="git-guidance">Git Guidance</h1>
+<h2 id="installation">Installation</h2>
+<p><a href="https://git-scm.com/downloads">Install Git</a> and follow the <a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">First-Time Git Setup</a>.</p>
+<h2 id="basic-workflow">Basic workflow</h2>
+<p>Whenever you want to make a change to a repository you need to first clone it so you can work on it locally</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/username/repo-name
+</code></pre></div>
+<p>To avoid adding code that has not been peer reviewed to the main branch (ex. develop) we typically work in feature branches, and merge these back to the main trunk with a Pull Request</p>
+<div class="highlight"><pre><span></span><code># pull the latest changes
+git pull
+
+# start a new feature branch based on the develop branch
+git checkout -b feature/123-add-git-instructions develop
+
+# edit some files
+
+git add &lt;file&gt;
+git commit -m &quot;add basic instructions&quot;
+
+# edit some files
+
+git add &lt;file&gt;
+git commit -m &quot;add more advanced instructions&quot;
+
+# push the branch to the remote repository
+git push --set-upstream origin feature/123-add-git-instructions
+</code></pre></div>
+<p>Once the feature branch is pushed to the remote repository it is visible to anyone with access to the code.
+Now you can open a Pull Request in GitHub, Azure DevOps or similar to request to merge the changes into the main branch.</p>
+<h2 id="cloning">Cloning</h2>
+<p>Cloning a repository pulls down a full copy of all the repository data, so that you can work on it locally.
+This copy includes all versions of every file and folder for the project.</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/username/repo-name
+</code></pre></div>
+<p>You only need to clone the repository the first time. Before any subsequent branches you can sync any changes from the remote repository using <code>git pull</code>.</p>
+<h2 id="branching">Branching</h2>
+<p>Often, the <code>main</code> or <code>develop</code> branch of a repository will be locked so that you can't make changes without a Pull Request.
+In this case it is useful to create a separate branch for your local/feature work, so that you can work and track your changes without modifying the main trunk.</p>
+<p>Pull the latest changes and create a new branch for your work based on the trunk (in this case develop)</p>
+<div class="highlight"><pre><span></span><code>git pull
+git checkout -b feature/feature-name develop
+</code></pre></div>
+<p>At any point, you can move between the branches with <code>git checkout &lt;branch&gt;</code> as long as you have committed or stashed your work.
+If you forget the name of your branch use <code>git branch --all</code> to list all branches</p>
+<p>When you are done working, push your changes to a branch in the remote repository using <code>git push</code></p>
+<div class="highlight"><pre><span></span><code>git push --set-upstream origin feature/feature-name
+</code></pre></div>
+<p>after the first push, the --set-upstream parameter is not needed</p>
+<h2 id="committing">Committing</h2>
+<p>To avoid loosing work, it is good to commit often in small chunks. This allows you to revert only the last changes if you discover a problem and also neatly explains exactly what changes were made and why.</p>
+<ol>
+<li>
+<p>Make changes to your branch</p>
+</li>
+<li>
+<p>Check what files were changed</p>
+<div class="highlight"><pre><span></span><code>&gt; git status
+On branch feature/271-basic-commit-info
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+        modified:   source-control/git-guidance/readme.md
+</code></pre></div>
+</li>
+<li>
+<p>Track the files you wish to include in the commit</p>
+<div class="highlight"><pre><span></span><code>git add --all
+</code></pre></div>
+<p>to track all modified files, or</p>
+<div class="highlight"><pre><span></span><code>git add source-control/git-guidance/readme.md
+</code></pre></div>
+<p>to track only specific files</p>
+</li>
+<li>
+<p>Commit the changes to your local branch with a descriptive <a href="../../readme/#commit-best-practices">commit message</a></p>
+<div class="highlight"><pre><span></span><code>git commit -m &quot;add basic git instructions&quot;
+</code></pre></div>
+</li>
+</ol>
+<h2 id="merging">Merging</h2>
+<p>In <a href="../../../CSE/">CSE</a> we encourage the use of Pull Request to merge code to the main repository to make sure that all code in the final product is <a href="../../../code-reviews/">code reviewed</a></p>
+<p>The Pull Request (PR) process in <a href="https://docs.microsoft.com/en-us/azure/devops/repos/git/pull-requests?view=azure-devops">Azure DevOps</a>, <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">GitHub</a> and other similar tools make it easy both to start a PR, review a PR and merge a PR.</p>
+<h3 id="merge-conflicts">Merge Conflicts</h3>
+<p>If multiple people make changes to the same files, you may need to resolve any conflicts that have occurred before you can merge.</p>
+<div class="highlight"><pre><span></span><code># check out the develop branch and get the latest changes
+git checkout develop
+git pull
+
+# check out your branch
+git checkout &lt;your branch&gt;
+
+# merge the develop branch into your branch
+git merge develop
+
+# find which files need to be resolved
+git status
+</code></pre></div>
+<p>Git will mark the conflicts in the files</p>
+<div class="highlight"><pre><span></span><code>Here are lines that are either unchanged from the common
+ancestor, or cleanly resolved because only one side changed.
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; yours:sample.txt
+Conflict resolution is hard;
+let&#39;s go shopping.
+=======
+Git makes conflict resolution easy.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; theirs:sample.txt
+And here is another line that is cleanly resolved or unmodified
+</code></pre></div>
+<p>Edit the conflicting files in your favorite editor to resolve the conflict. You can also a merge tool like <a href="https://github.com/KDE/kdiff3">kdiff3</a></p>
+<div class="highlight"><pre><span></span><code># conclude the merge
+git merge --continue
+
+# verify that everything went ok
+git log
+
+# push the changes to the remote branch
+git push
+</code></pre></div>
+<h2 id="managing-remotes">Managing remotes</h2>
+<p>A local git repository can have one or more backing remote repositories. You can list the remote repositories using <code>git remote</code> - by default, the remote repository you cloned from will be called origin</p>
+<div class="highlight"><pre><span></span><code>&gt; git remote -v
+origin  https://github.com/microsoft/code-with-engineering-playbook.git (fetch)
+origin  https://github.com/microsoft/code-with-engineering-playbook.git (push)
+</code></pre></div>
+<h3 id="working-with-forks">Working with forks</h3>
+<p>You can set multiple remotes. This is useful for example if you want to work with a forked version of the repository.
+For more info on how to set upstream remotes and syncing repositories when working with forks see GitHub's <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks">Working with forks documentation</a>.</p>
+<h3 id="updating-the-remote-if-a-repository-changes-names">Updating the remote if a repository changes names</h3>
+<p>If the repository is changed in some way, for example a name change, or if you want to switch between HTTPS and SSH you need to update the remote</p>
+<div class="highlight"><pre><span></span><code># list the existing remotes
+&gt; git remote -v
+origin  https://hostname/username/repository-name.git (fetch)
+origin  https://hostname/username/repository-name.git (push)
+
+# change the remote url
+git remote set-url origin https://hostname/username/new-repository-name.git
+
+# verify that the remote URL has changed
+&gt; git remote -v
+origin  https://hostname/username/new-repository-name.git (fetch)
+origin  https://hostname/username/new-repository-name.git (push)
+</code></pre></div>
+<h2 id="rolling-back-changes">Rolling back changes</h2>
+<h3 id="reverting-and-deleting-commits">Reverting and deleting commits</h3>
+<p>To "undo" a commit, run the following two commands: <code>git revert</code> and <code>git reset</code>. <code>git revert</code> creates a new commit that undoes commits while <code>git reset</code> allows to delete commits entirely from the commit history.</p>
+<blockquote>
+<p>If you have committed secrets/keys, <code>git reset</code> will remove them from the commit history!</p>
+</blockquote>
+<p>To <strong>delete</strong> the latest commit use <code>HEAD~</code>:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD~1
+</code></pre></div>
+<p>To delete commits back to a specific commit, use the respective commit id:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard &lt;sha1-commit-id&gt;
+</code></pre></div>
+<p>after you deleted the unwanted commits, push using <code>force</code>:</p>
+<div class="highlight"><pre><span></span><code>git push origin HEAD --force
+</code></pre></div>
+<p>Interactive rebase for undoing commits:</p>
+<div class="highlight"><pre><span></span><code>git rebase -i HEAD~N
+</code></pre></div>
+<p>The above command will open an interactive session in an editor (for example vim) with the last N commits sorted from oldest to newest. To undo a commit, delete the corresponding line of the commit and save the file. Git will rewrite the commits in the order listed in the file and because one (or many) commits were deleted, the commit will no longer be part of the history.</p>
+<p>Running rebase will locally modify the history, after this one can use <code>force</code> to push the changes to remote without the deleted commit.</p>
+<h3 id="recovering-lost-commits">Recovering lost commits</h3>
+<p>If you "lost" a commit that you want to return to, for example to revert back a <code>git rebase</code> where your commits got squashed, you can use <code>git reflog</code> to find the commit:</p>
+<div class="highlight"><pre><span></span><code>git reflog
+</code></pre></div>
+<p>Then you can use the reflog reference (<code>HEAD@{}</code>) to reset to a specific commit before the rebase:</p>
+<div class="highlight"><pre><span></span><code>git reset HEAD@<span class="o">{</span><span class="m">2</span><span class="o">}</span>
+</code></pre></div>
+<h2 id="using-submodules">Using submodules</h2>
+<p>Submodules can be useful in more complex deployment and/or development scenarios</p>
+<p>Adding a submodule to your repo</p>
+<div class="highlight"><pre><span></span><code>git submodule add -b master &lt;your_submodule&gt;
+</code></pre></div>
+<p>Initialize and pull a repo with submodules:</p>
+<div class="highlight"><pre><span></span><code>git submodule init
+git submodule update --init --remote
+git submodule foreach git checkout master
+git submodule foreach git pull origin
+</code></pre></div>
+<h2 id="stashing-changes">Stashing changes</h2>
+<p><code>git stash</code> is super handy if you have un-committed changes in your working directory but you want to work on a different branch. You can run <code>git stash</code> and save the un-committed work and reverts back to the HEAD commit. You can retrieve the saved changes by running <code>git stash pop</code>:</p>
+<div class="highlight"><pre><span></span><code>git stash
+…
+git stash pop
+</code></pre></div>
+<p>Or you can move the current state into a new branch:</p>
+<div class="highlight"><pre><span></span><code>git stash branch &lt;new_branch_to_save_changes&gt;
+</code></pre></div>
+<h2 id="working-with-images-video-and-other-binary-content">Working with images, video and other binary content</h2>
+<p>Avoid committing frequently changed binary files, such as large images, video or compiled code to your git repository. Binary content is not diffed like text content, so cloning or pulling from the repository may pull each revision of the binary file.</p>
+<p>One solution to this problem is <code>Git LFS (Git Large File Storage)</code> - an open source Git extension for versioning large files. <code>Git LFS</code> replaces the binary files with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or Azure DevOps.</p>
+<h3 id="benefits-of-git-lfs">Benefits of Git LFS</h3>
+<ul>
+<li>Uses the end to end Git workflow for all files</li>
+<li>Git LFS supports file locking to avoid conflicts for undiffable assets</li>
+<li>Git LFS is fully supported in Azure DevOps Services</li>
+</ul>
+<h3 id="limitations-of-git-lfs">Limitations of Git LFS</h3>
+<ul>
+<li>Everyone contributing to the repository needs to install Git LFS</li>
+<li>If not set up properly:<ul>
+<li>Binary files committed through Git LFS are not visible as Git will only download the data describing the large file</li>
+<li>Committing large binaries will push the full binary to the repository</li>
+</ul>
+</li>
+<li>Git cannot merge the changes from two different versions of a binary file; file locking mitigates this</li>
+<li>Azure Repos do not support using SSH for repositories with Git LFS tracked files - for more information see the Git LFS <a href="https://github.com/git-lfs/git-lfs/blob/master/docs/api/authentication.md">authentication documentation</a></li>
+</ul>
+<h3 id="common-commands">Common commands</h3>
+<p>Install git lfs</p>
+<div class="highlight"><pre><span></span><code>git lfs install       <span class="c1"># windows</span>
+sudo apt-get git-lfs  <span class="c1"># linux</span>
+</code></pre></div>
+<p>See the <a href="https://github.com/git-lfs/git-lfs/wiki/Installation">Git LFS installation instructions</a> for installation on other systems</p>
+<p>Track .mp4 files with Git LFS</p>
+<div class="highlight"><pre><span></span><code>git lfs track <span class="s1">&#39;*.mp4&#39;</span>
+</code></pre></div>
+<p>Update the <code>.gitattributes</code> file listing the files and patterns to track</p>
+<div class="highlight"><pre><span></span><code>*.mp4 <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+docs/images/* <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+</code></pre></div>
+<p>List all patterns tracked</p>
+<div class="highlight"><pre><span></span><code>git lfs track
+</code></pre></div>
+<p>List all files tracked</p>
+<div class="highlight"><pre><span></span><code>git lfs ls-files
+</code></pre></div>
+<p>Download files to your working directory</p>
+<div class="highlight"><pre><span></span><code>git lfs pull
+git lfs pull --include<span class="o">=</span><span class="s2">&quot;path/to/file&quot;</span>
+</code></pre></div>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://git-lfs.github.com/">Git LFS getting started</a></li>
+<li><a href="https://github.com/git-lfs/git-lfs/tree/master/docs">Git LFS manual</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/devops/repos/git/manage-large-files?view=azure-devops">Git LFS on Azure Repos</a></li>
+</ul>
+<h2 id="tools">Tools</h2>
+<ul>
+<li>Visual Studio Code is a cross-platform powerful source code editor with built in git commands. Within Visual Studio Code editor you can review diffs, stage changes, make commits, pull and push to your git repositories.
+You can refer to <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_git-support">Visual Studio Code Git Support</a> for documentation.</li>
+</ul>
+<ul>
+<li>Use a shell/terminal to work with Git commands instead of relying on <a href="https://git-scm.com/downloads/guis/">GUI clients</a>.</li>
+</ul>
+<ul>
+<li>If you're working on Windows, <a href="https://github.com/dahlbyk/posh-git">posh-git</a> is a great PowerShell environment for Git. Another option is to use <a href="http://www.techoism.com/how-to-install-git-bash-on-windows/">Git bash for Windows</a>. On Linux/Mac, install git and use your favorite shell/terminal.</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../contributing/naming-branches/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Naming branches
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../pull-request-templates/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Pull Request Templates
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.instant'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
