@@ -1,5 +1,7 @@
 # Agile Development
 
+Info
+
 ## Sections
 
 - [Backlog Management](backlog-management/readme.md)
